@@ -1,0 +1,71 @@
+[
+{
+	"uri": "/drydock-business/getting-start/",
+	"title": "Getting started",
+	"tags": [],
+	"description": "",
+	"content": " Requirements  Install With DrupalVM Locally Local Prerequisites Install Composer Globally https://getcomposer.org/doc/00-intro.md#globally Install Vagrant https://www.vagrantup.com/downloads.html Install Virtual Box https://www.virtualbox.org/wiki/Downloads Install Drupal Unzip The Project Unzip the Drydock project on your computer into a folder called drydock-business. You should end up with a folder structure like below. /drydock-business - /drupal - /vm Configure DrupalVM Modify the config.yml file located inside the vm folder. You will need to change the local_path to point to the project files on your computer.\n  Install With MAMP Free Edition Tested with MAMP (Basic) 4.3 on Mac OSX Sierra 10.12 Unzip Project Files Unzip the Drydock project on your computer into a folder called drydock-business. You should end up with a folder structure like below. /drydock-business - /drupal - /web - /vm Set MAMP Document Root In MAMP the document root must be the set to the Drupal web folder. Install Drupal Visit your local MAMP website localhost:8888 and you should be presented with the Drupal Install screen.\n  Install With MAMP Pro Tested with MAMP Pro 4.3 on Mac OSX Sierra 10.12 Unzip Project Files Unzip the Drydock project on your computer into a folder called drydock-business. You should end up with a folder structure like below. /drydock-business - /drupal - /web - /vm Set MAMP Document Root In MAMP the document root must be the set to the Drupal web folder. Install Drupal Visit your local MAMP website localhost:8888 and you should be presented with the Drupal Install screen.\n  Setup Github  Setup Github Create a new Github repo on Github and then initalise a new Github repo in the /drupal folder. cd drupal git init git add -A . git commit -m \u0026quot;web and vendor directory from composer install\u0026quot; git remote add origin https://github.com/JugglerX/your-github-repo.git git push origin master   Deploy to Pantheon Create a Pantheon website. You can use the dashboard or create it from the CLI using Terminus. terminus site:create my-project \u0026quot;My Project\u0026quot; \u0026quot;Drupal 8\u0026quot; terminus connection:set my-project.dev git Push the code to the Pantheon git repo. // you can get the ssh url from the pantheon dashboard \u0026gt; connection info git remote add pantheon ssh://ID@ID.drush.in:2222/~/repository.git git push --force pantheon master Upload the MySQL database to Pantheon vagrant ssh cd /var/www/drupalvm/drupal mkdir sql cd sql mysqldump -uroot -proot drupal \u0026gt; drupal.\n  "
+},
+{
+	"uri": "/drydock-business/getting-start/install-drupalvm/",
+	"title": "Install With DrupalVM Locally",
+	"tags": [],
+	"description": "",
+	"content": " Local Prerequisites  Install Composer Globally https://getcomposer.org/doc/00-intro.md#globally Install Vagrant https://www.vagrantup.com/downloads.html Install Virtual Box https://www.virtualbox.org/wiki/Downloads  Install Drupal Unzip The Project Unzip the Drydock project on your computer into a folder called drydock-business. You should end up with a folder structure like below.\n/drydock-business - /drupal - /vm  Configure DrupalVM Modify the config.yml file located inside the vm folder. You will need to change the local_path to point to the project files on your computer.\nvagrant_synced_folders: - local_path: ~/work/web/drydock-business // enter the full path to your project directory  Run Vagrant From the vm folder you can now run Vagrant.\nvagrant up If for any reason the deployment fails, running vagrant provision will often fix the issue.\n Visit The Website Visit drydock-business.local in the browser! You should see the default Drupal 8 website.\nImport Data Choose between two methods to complete the Drydock installation. This will enable the theme, but more importantly import content types, blocks, views and content.\nMethod 1: SQL Import Importing the SQL file is the fastest and easiest method to configure the site and achieve the exact look and feel as the demo. Note you need to run MySQL from within the Vagrant box.\nFrom the vm directory ssh into Vagrant\nvagrant ssh  Navigate to the folder which includes the drydock.sql file.\ncd /var/www/drupalvm/drupal/sql  Import the database. DrupalVM has already created a database called drupal.\nmysql -uroot -proot drupal \u0026lt; drydock.sql  Finally, clear the Drupal cache. Executing Drush commands must be done from the /web folder.\ncd .. cd web drush cr all  Exit the SSH session.\nexit  Visit drydock-business.local in the browser. The website should be fully provisioned and look like the demo website. This ends the installation process on your local machine.\nMethod 2: Configuration Syncronization Method 2 uses the new Drupal 8 configuration management system. Site configuration data that is stored in the database, can now be imported and exported as code. The potential is huge, but there are still many quirks to the process. We recommend you read the Drupal configuration management docs for an overview.\nFor the Drydock theme, we\u0026rsquo;ve included the site configuration files. So instead of importing SQL you can import the configuration files to provision the fully completed site.\nFrom the vm directory ssh into Vagrant\nvagrant ssh  Drush commands must be executed from within the /web folder.\ncd /var/www/drupalvm/drupal/web  Install and enable the Drydock theme.\ndrush en drydock -y drush config-set system.theme default drydock -y  Set the default homepage node.\ndrush config-set system.site page.front /node/1 -y  Sync the configurations UUID.\nOne of the quirks of configuration management is that the UUID of your Drupal site must match the UUID in the configuration files. When you install a fresh copy of Drupal locally, and then recieve configuration files that have been exported from a different Drupal installation (different databases) you will need to sync the UUID.\ndrupal config:export:single --name=system.site --no-interaction drupal config:export:single --name=shortcut.set.default --remove-uuid --remove-config-hash --no-interaction  Import the configuration\ndrush config-import -y  Visit drydock-business.local in the browser. The website should be fully provisioned and look like the demo website. This ends the installation process on your local machine.\nGenerate Dummy Content When the theme is first installed, it automatically creates default content for key pages including \u0026lsquo;homepage, services, work, team, testimonials, about us, contact us\u0026rsquo;\nTo generate dummy content for each content type use devel_generate in the Drupal admin.\nOr use drush on the command line.\ndrush generate-content 20 --types=service drush generate-content 20 --types=work drush generate-content 20 --types=team drush generate-content 20 --types=testimonial  "
+},
+{
+	"uri": "/drydock-business/getting-start/install-mamp-free/",
+	"title": "Install With MAMP Free Edition",
+	"tags": [],
+	"description": "",
+	"content": " Tested with MAMP (Basic) 4.3 on Mac OSX Sierra 10.12\n Unzip Project Files Unzip the Drydock project on your computer into a folder called drydock-business. You should end up with a folder structure like below.\n/drydock-business - /drupal - /web - /vm  Set MAMP Document Root In MAMP the document root must be the set to the Drupal web folder.\nInstall Drupal Visit your local MAMP website localhost:8888 and you should be presented with the Drupal Install screen.\nFollow the prompts and install the site.\nThe theme comes with a settings.php file which has the database settings preconfigured.\n// settings.local.php $databases[\u0026#39;default\u0026#39;][\u0026#39;default\u0026#39;] = array ( \u0026#39;database\u0026#39; =\u0026gt; \u0026#39;drupal\u0026#39;, \u0026#39;username\u0026#39; =\u0026gt; \u0026#39;root\u0026#39;, \u0026#39;password\u0026#39; =\u0026gt; \u0026#39;root\u0026#39;, \u0026#39;prefix\u0026#39; =\u0026gt; \u0026#39;\u0026#39;, \u0026#39;host\u0026#39; =\u0026gt; \u0026#39;localhost\u0026#39;, \u0026#39;port\u0026#39; =\u0026gt; \u0026#39;\u0026#39;, \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;mysql\u0026#39;, ); Import SQL Database Import the drydock.sql file that comes with the Drydock project. It is located inside the /drupal/sql folder.\nVisit the site and clear cache Visit localhost:8888 - make sure to login to Drupal admin and clear the cache. After clearing cache you should the final site.\n"
+},
+{
+	"uri": "/drydock-business/getting-start/install-mamp-pro/",
+	"title": "Install With MAMP Pro",
+	"tags": [],
+	"description": "",
+	"content": " Tested with MAMP Pro 4.3 on Mac OSX Sierra 10.12\n Unzip Project Files Unzip the Drydock project on your computer into a folder called drydock-business. You should end up with a folder structure like below.\n/drydock-business - /drupal - /web - /vm  Set MAMP Document Root In MAMP the document root must be the set to the Drupal web folder.\nInstall Drupal Visit your local MAMP website localhost:8888 and you should be presented with the Drupal Install screen.\nFollow the prompts and install the site.\nThe theme comes with a settings.php file which has the database settings preconfigured.\n// settings.local.php $databases[\u0026#39;default\u0026#39;][\u0026#39;default\u0026#39;] = array ( \u0026#39;database\u0026#39; =\u0026gt; \u0026#39;drupal\u0026#39;, \u0026#39;username\u0026#39; =\u0026gt; \u0026#39;root\u0026#39;, \u0026#39;password\u0026#39; =\u0026gt; \u0026#39;root\u0026#39;, \u0026#39;prefix\u0026#39; =\u0026gt; \u0026#39;\u0026#39;, \u0026#39;host\u0026#39; =\u0026gt; \u0026#39;localhost\u0026#39;, \u0026#39;port\u0026#39; =\u0026gt; \u0026#39;\u0026#39;, \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;mysql\u0026#39;, ); Import SQL Database Import the drydock.sql file that comes with the Drydock project. It is located inside the /drupal/sql folder.\nVisit the site and clear cache Visit localhost:8888 - make sure to login to Drupal admin and clear the cache. After clearing cache you should the final site.\n"
+},
+{
+	"uri": "/drydock-business/getting-start/deploy-git/",
+	"title": "Setup Github",
+	"tags": [],
+	"description": "",
+	"content": " Setup Github Create a new Github repo on Github and then initalise a new Github repo in the /drupal folder.\ncd drupal git init git add -A . git commit -m \u0026quot;web and vendor directory from composer install\u0026quot; git remote add origin https://github.com/JugglerX/your-github-repo.git git push origin master  "
+},
+{
+	"uri": "/drydock-business/getting-start/deploy-pantheon/",
+	"title": "Deploy to Pantheon",
+	"tags": [],
+	"description": "",
+	"content": "Create a Pantheon website. You can use the dashboard or create it from the CLI using Terminus.\nterminus site:create my-project \u0026quot;My Project\u0026quot; \u0026quot;Drupal 8\u0026quot; terminus connection:set my-project.dev git  Push the code to the Pantheon git repo.\n// you can get the ssh url from the pantheon dashboard \u0026gt; connection info git remote add pantheon ssh://ID@ID.drush.in:2222/~/repository.git git push --force pantheon master  Upload the MySQL database to Pantheon\nvagrant ssh cd /var/www/drupalvm/drupal mkdir sql cd sql mysqldump -uroot -proot drupal \u0026gt; drupal.sql; exit cd sql mysql -u pantheon -p{random_password} 7 -h {pantheon_hostname} -P 27595 pantheon \u0026lt; drupal.sql  "
+},
+{
+	"uri": "/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/drydock-business/",
+	"title": "Drydock Business Theme",
+	"tags": [],
+	"description": "",
+	"content": " Requirements  Getting started \n  "
+},
+{
+	"uri": "/",
+	"title": "Drydock Docs",
+	"tags": [],
+	"description": "",
+	"content": " Drydock Business Theme "
+},
+{
+	"uri": "/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

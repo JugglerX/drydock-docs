@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Drydock Docs on Drydock Themes Documentation</title>
+    <link>/</link>
+    <description>Recent content in Drydock Docs on Drydock Themes Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Install With DrupalVM Locally</title>
+      <link>/drydock-business/getting-start/install-drupalvm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/drydock-business/getting-start/install-drupalvm/</guid>
+      <description>Local Prerequisites  Install Composer Globally https://getcomposer.org/doc/00-intro.md#globally Install Vagrant https://www.vagrantup.com/downloads.html Install Virtual Box https://www.virtualbox.org/wiki/Downloads  Install Drupal Unzip The Project Unzip the Drydock project on your computer into a folder called drydock-business. You should end up with a folder structure like below.
+/drydock-business - /drupal - /vm  Configure DrupalVM Modify the config.yml file located inside the vm folder. You will need to change the local_path to point to the project files on your computer.</description>
+    </item>
+    
+    <item>
+      <title>Install With MAMP Free Edition</title>
+      <link>/drydock-business/getting-start/install-mamp-free/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/drydock-business/getting-start/install-mamp-free/</guid>
+      <description>Tested with MAMP (Basic) 4.3 on Mac OSX Sierra 10.12
+ Unzip Project Files Unzip the Drydock project on your computer into a folder called drydock-business. You should end up with a folder structure like below.
+/drydock-business - /drupal - /web - /vm  Set MAMP Document Root In MAMP the document root must be the set to the Drupal web folder.
+Install Drupal Visit your local MAMP website localhost:8888 and you should be presented with the Drupal Install screen.</description>
+    </item>
+    
+    <item>
+      <title>Install With MAMP Pro</title>
+      <link>/drydock-business/getting-start/install-mamp-pro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/drydock-business/getting-start/install-mamp-pro/</guid>
+      <description>Tested with MAMP Pro 4.3 on Mac OSX Sierra 10.12
+ Unzip Project Files Unzip the Drydock project on your computer into a folder called drydock-business. You should end up with a folder structure like below.
+/drydock-business - /drupal - /web - /vm  Set MAMP Document Root In MAMP the document root must be the set to the Drupal web folder.
+Install Drupal Visit your local MAMP website localhost:8888 and you should be presented with the Drupal Install screen.</description>
+    </item>
+    
+    <item>
+      <title>Setup Github</title>
+      <link>/drydock-business/getting-start/deploy-git/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/drydock-business/getting-start/deploy-git/</guid>
+      <description> Setup Github Create a new Github repo on Github and then initalise a new Github repo in the /drupal folder.
+cd drupal git init git add -A . git commit -m &amp;quot;web and vendor directory from composer install&amp;quot; git remote add origin https://github.com/JugglerX/your-github-repo.git git push origin master  </description>
+    </item>
+    
+    <item>
+      <title>Deploy to Pantheon</title>
+      <link>/drydock-business/getting-start/deploy-pantheon/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/drydock-business/getting-start/deploy-pantheon/</guid>
+      <description>Create a Pantheon website. You can use the dashboard or create it from the CLI using Terminus.
+terminus site:create my-project &amp;quot;My Project&amp;quot; &amp;quot;Drupal 8&amp;quot; terminus connection:set my-project.dev git  Push the code to the Pantheon git repo.
+// you can get the ssh url from the pantheon dashboard &amp;gt; connection info git remote add pantheon ssh://ID@ID.drush.in:2222/~/repository.git git push --force pantheon master  Upload the MySQL database to Pantheon
+vagrant ssh cd /var/www/drupalvm/drupal mkdir sql cd sql mysqldump -uroot -proot drupal &amp;gt; drupal.</description>
+    </item>
+    
+  </channel>
+</rss>

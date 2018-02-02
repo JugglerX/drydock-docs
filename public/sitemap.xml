@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/drydock-business/getting-start/</loc>
+  </url>
+  
+  <url>
+    <loc>/drydock-business/getting-start/install-drupalvm/</loc>
+  </url>
+  
+  <url>
+    <loc>/drydock-business/getting-start/install-mamp-free/</loc>
+  </url>
+  
+  <url>
+    <loc>/drydock-business/getting-start/install-mamp-pro/</loc>
+  </url>
+  
+  <url>
+    <loc>/drydock-business/getting-start/deploy-git/</loc>
+  </url>
+  
+  <url>
+    <loc>/drydock-business/getting-start/deploy-pantheon/</loc>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/drydock-business/</loc>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
